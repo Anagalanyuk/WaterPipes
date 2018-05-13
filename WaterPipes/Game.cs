@@ -8,6 +8,7 @@ namespace WaterPipes
 		private BorderField border;
 		private Cursor cursor;
 		private Field field;
+		private int offSet = 3;
 		private ShowField show;
 		private CountStep step;
 
@@ -16,8 +17,8 @@ namespace WaterPipes
 			field = new Field();
 			border = new BorderField(field.Rows, field.Columns, '+');
 			cursor = new Cursor();
-			show = new ShowField(field);
 			step = new CountStep();
+			show = new ShowField(field);
 		}
 
 		public void PlayGame()
@@ -26,12 +27,8 @@ namespace WaterPipes
 			border.Show();
 			show.Show();
 			cursor.Show();
-			Console.SetCursorPosition(0, field.Rows + 3);
+			Console.SetCursorPosition(0, field.Rows + offSet);
 			List<IKey> keys = new List<IKey>();
-			keys.Add(new StepLeft(cursor, field));
-			keys.Add(new StepRight(cursor, field));
-			keys.Add(new StepUp(cursor, field));
-			keys.Add(new StepDown(cursor, field));
 			keys.Add(new KeyEnter(cursor, field));
 			keys.Add(new KeyS(cursor, field));
 			var key = ConsoleKey.Pause;
@@ -43,13 +40,13 @@ namespace WaterPipes
 				{
 					if (canKey.Key == key)
 					{
-						canKey.Move();
+						canKey.Action();
 					}
 				}
 				pressKey.Move(key);
 				show.Show();
 				cursor.Show();
-				Console.SetCursorPosition(0, field.Rows + 3);
+				Console.SetCursorPosition(0, field.Rows + offSet);
 			}
 			KeySpace start = new KeySpace(field, step);
 			start.StartGame();

@@ -18,9 +18,10 @@ namespace WaterPipes
 		public void StartGame()
 		{
 			int sleep = 400;
-			int index = 1;
-			bool result = true;
-			while (result)
+			bool gameOver = false;
+			int offSet = 1;
+			int offSetCursor = 3;
+			while (!gameOver)
 			{
 				for (int rows = 0; rows < field.Rows; ++rows)
 				{
@@ -28,48 +29,54 @@ namespace WaterPipes
 					{
 						if (field[rows, columns].State == CellState.FiledPipe || field[rows, columns].State == CellState.SourceWater)
 						{
-							if (rows > 0 && columns > 0)
+							if (rows > 0)
 							{
-								if (field[rows - index, columns].State == CellState.EmptyPipe)
+								if (field[rows - offSet, columns].State == CellState.EmptyPipe)
 								{
-									field[rows - index, columns].State = CellState.FiledPipe;
+									field[rows - offSet, columns].State = CellState.FiledPipe;
 								}
-								if (field[rows, columns - index].State == CellState.EmptyPipe)
+							}
+							if (columns > 0)
+							{
+								if (field[rows, columns - offSet].State == CellState.EmptyPipe)
 								{
-									field[rows, columns - 1].State = CellState.FiledPipe;
+									field[rows, columns - offSet].State = CellState.FiledPipe;
 								}
 							}
 						}
 					}
 				}
-				for (int rows = field.Rows - 1; rows > 0; --rows)
+				for (int rows = field.Rows - 1; rows >= 0; --rows)
 				{
-					for (int columns = field.Columns - 1; columns > 0; --columns)
+					for (int columns = field.Columns - 1; columns >= 0; --columns)
 					{
 						if (field[rows, columns].State == CellState.FiledPipe || field[rows, columns].State == CellState.SourceWater)
 						{
-							if (rows < field.Rows - 1 && columns < field.Columns - 1)
+							if (rows < field.Rows - 1)
 							{
-								if (field[rows + index, columns].State == CellState.EmptyPipe)
+								if (field[rows + offSet, columns].State == CellState.EmptyPipe)
 								{
-									field[rows + index, columns].State = CellState.FiledPipe;
+									field[rows + offSet, columns].State = CellState.FiledPipe;
 								}
-								if (field[rows, columns + index].State == CellState.EmptyPipe)
+							}
+							if (columns < field.Columns - 1)
+							{
+								if (field[rows, columns + offSet].State == CellState.EmptyPipe)
 								{
-									field[rows, columns + index].State = CellState.FiledPipe;
+									field[rows, columns + offSet].State = CellState.FiledPipe;
 								}
 							}
 						}
 					}
 				}
-				result = false;
+				gameOver = true;
 				for (int i = 0; i < field.Rows; ++i)
 				{
 					for (int j = 0; j < field.Columns; ++j)
 					{
 						if (field[i, j].State == CellState.EmptyPipe)
 						{
-							result = true;
+							gameOver = false;
 						}
 					}
 				}
@@ -77,7 +84,7 @@ namespace WaterPipes
 				Console.SetCursorPosition(0, 0);
 				step.Show();
 				show.Show();
-				Console.SetCursorPosition(0, field.Rows + 3);
+				Console.SetCursorPosition(0, field.Rows + offSetCursor);
 				System.Threading.Thread.Sleep(sleep);
 			}
 		}

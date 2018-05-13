@@ -6,6 +6,7 @@ namespace WaterPipes
 	{
 		private char border;
 		private int height = 2;
+		private int offSet = 1;
 		private int widht = 1;
 
 
@@ -18,10 +19,9 @@ namespace WaterPipes
 
 		public void Show()
 		{
-
 			for (int topBottonBorder = 0; topBottonBorder <= widht; ++topBottonBorder)
 			{
-				Console.SetCursorPosition(topBottonBorder, 1);
+				Console.SetCursorPosition(topBottonBorder, offSet);
 				Console.Write(border);
 				Console.SetCursorPosition(topBottonBorder, height);
 				Console.Write(border);

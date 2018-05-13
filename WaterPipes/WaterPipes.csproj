@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="BorderField.cs" />
     <Compile Include="Cell.cs" />
+    <Compile Include="CheckChanges.cs" />
     <Compile Include="Cursor.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="CellState.cs" />
@@ -57,10 +58,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShowField.cs" />
     <Compile Include="CountStep.cs" />
-    <Compile Include="StepDown.cs" />
-    <Compile Include="StepLeft.cs" />
-    <Compile Include="StepRight.cs" />
-    <Compile Include="StepUp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

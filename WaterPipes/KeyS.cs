@@ -20,9 +20,16 @@ namespace WaterPipes
 			get { return key; }
 		}
 
-		public void Move()
+		public void Action()
 		{
-			field[cursor.Y, cursor.X].State = CellState.SourceWater;
+			if (field[cursor.Y, cursor.X].State == CellState.Space)
+			{
+				field[cursor.Y, cursor.X].State = CellState.SourceWater;
+			}
+			else
+			{
+				field[cursor.Y, cursor.X].State = CellState.SourceWater;
+			}
 		}
 	}
 }

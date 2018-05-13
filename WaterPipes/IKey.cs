@@ -6,6 +6,6 @@ namespace WaterPipes
 	{
 		ConsoleKey Key { get; }
 
-		void Move();
+		void Action();
 	}
 }
