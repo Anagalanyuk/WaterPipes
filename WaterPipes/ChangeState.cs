@@ -32,7 +32,7 @@ namespace WaterPipes
 			}
 			else if (field[cursor.Y, cursor.X].State == CellState.EmptyPipe || field[cursor.Y, cursor.X].State == CellState.SourceWater)
 			{
-				if (check.Check() == 1)
+				if (check.Check() == 2)
 				{
 					field[cursor.Y, cursor.X].StateChange();
 				}
