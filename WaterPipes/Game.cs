@@ -29,7 +29,7 @@ namespace WaterPipes
 			cursor.Show();
 			Console.SetCursorPosition(0, field.Rows + offSet);
 			List<IKey> keys = new List<IKey>();
-			keys.Add(new KeyEnter(cursor, field));
+			keys.Add(new ChangeState(cursor, field));
 			keys.Add(new KeyS(cursor, field));
 			var key = ConsoleKey.Pause;
 			Moves pressKey = new Moves(cursor, field);
@@ -48,8 +48,8 @@ namespace WaterPipes
 				cursor.Show();
 				Console.SetCursorPosition(0, field.Rows + offSet);
 			}
-			KeySpace start = new KeySpace(field, step);
-			start.StartGame();
+			StartGame start = new StartGame(field, step);
+			start.PlayGame();
 		}
 	}
 }

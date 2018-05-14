@@ -50,9 +50,9 @@
     <Compile Include="CellState.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="IKey.cs" />
-    <Compile Include="KeyEnter.cs" />
+    <Compile Include="ChangeState.cs" />
     <Compile Include="KeyS.cs" />
-    <Compile Include="KeySpace.cs" />
+    <Compile Include="StartGame.cs" />
     <Compile Include="Moves.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

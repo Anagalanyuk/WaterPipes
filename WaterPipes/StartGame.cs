@@ -2,20 +2,20 @@
 
 namespace WaterPipes
 {
-	public sealed class KeySpace
+	public sealed class StartGame
 	{
 		private Field field;
 		private ShowField show;
 		private CountStep step;
 
-		public KeySpace(Field field, CountStep step)
+		public StartGame(Field field, CountStep step)
 		{
 			this.field = field;
 			this.show = new ShowField(field);
 			this.step = step;
 		}
 
-		public void StartGame()
+		public void PlayGame()
 		{
 			int sleep = 400;
 			bool gameOver = false;

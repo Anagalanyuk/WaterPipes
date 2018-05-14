@@ -2,13 +2,13 @@
 
 namespace WaterPipes
 {
-	public sealed class KeyEnter : IKey
+	public sealed class ChangeState : IKey
 	{
 		private Cursor cursor;
 		private Field field;
 		private ConsoleKey key;
 
-		public KeyEnter(Cursor cursor, Field field)
+		public ChangeState(Cursor cursor, Field field)
 		{
 			this.cursor = cursor;
 			this.field = field;
