@@ -30,7 +30,7 @@ namespace WaterPipes
 			Console.SetCursorPosition(0, field.Rows + offSet);
 			List<IKey> keys = new List<IKey>();
 			keys.Add(new ChangeState(cursor, field));
-			keys.Add(new KeyS(cursor, field));
+			keys.Add(new InsertSourceWater(cursor, field));
 			var key = ConsoleKey.Pause;
 			Moves pressKey = new Moves(cursor, field);
 			while (key != ConsoleKey.Spacebar)

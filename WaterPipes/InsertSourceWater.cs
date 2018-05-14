@@ -2,13 +2,13 @@
 
 namespace WaterPipes
 {
-	public sealed class KeyS : IKey
+	public sealed class InsertSourceWater : IKey
 	{
 		private Cursor cursor;
 		private Field field;
 		private ConsoleKey key;
 
-		public KeyS(Cursor cursor, Field field)
+		public InsertSourceWater(Cursor cursor, Field field)
 		{
 			this.cursor = cursor;
 			this.field = field;

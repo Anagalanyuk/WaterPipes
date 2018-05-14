@@ -51,7 +51,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="IKey.cs" />
     <Compile Include="ChangeState.cs" />
-    <Compile Include="KeyS.cs" />
+    <Compile Include="InsertSourceWater.cs" />
     <Compile Include="StartGame.cs" />
     <Compile Include="Moves.cs" />
     <Compile Include="Program.cs" />
