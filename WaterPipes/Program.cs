@@ -1,12 +1,9 @@
-﻿using System;
-
-namespace WaterPipes
+﻿namespace WaterPipes
 {
-	class Program
+	public class Program
 	{
-		static void Main()
+		public static void Main()
 		{
-			Console.CursorVisible = false;
 			Game game = new Game();
 			game.PlayGame();
 		}
