@@ -9,7 +9,6 @@ namespace WaterPipes
 		private int offSet = 1;
 		private int widht = 1;
 
-
 		public BorderField(int height, int widht, char border)
 		{
 			this.border = border;
