@@ -11,7 +11,7 @@ namespace WaterPipes
 		public StartGame(Field field, CountStep step)
 		{
 			this.field = field;
-			this.show = new ShowField(field);
+			show = new ShowField(field);
 			this.step = step;
 		}
 
