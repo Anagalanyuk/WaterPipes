@@ -45,6 +45,7 @@
     <Compile Include="BorderField.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="CheckChanges.cs" />
+    <Compile Include="CheckWaterPipe.cs" />
     <Compile Include="Cursor.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="CellState.cs" />

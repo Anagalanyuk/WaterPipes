@@ -5,8 +5,8 @@ namespace WaterPipes
 	public sealed class Cursor
 	{
 		private char cursor = 'X';
-		int cursorX;
-		int cursorY;
+		private int cursorX;
+		private int cursorY;
 
 		public int X
 		{
