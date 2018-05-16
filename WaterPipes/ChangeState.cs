@@ -20,7 +20,7 @@ namespace WaterPipes
 			get { return key; }
 		}
 
-		public void Action()
+		public void Modification()
 		{
 			CheckChanges check = new CheckChanges(field, cursor);
 			CheckWaterPipe checkWiterPipe = new CheckWaterPipe(field, cursor);
