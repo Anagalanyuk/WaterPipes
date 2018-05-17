@@ -33,7 +33,7 @@ namespace WaterPipes
 				}
 				else
 				{
-					if(canChange.Check() == 1)
+					if (canChange.Check() == 1)
 					{
 						field[cursor.Y, cursor.X].State = CellState.Space;
 					}
@@ -45,7 +45,7 @@ namespace WaterPipes
 				{
 					field[cursor.Y, cursor.X].StateChange();
 				}
-				else if(checkWiterPipe.Check())
+				else if (checkWiterPipe.Check())
 				{
 					field[cursor.Y, cursor.X].StateChange();
 				}
