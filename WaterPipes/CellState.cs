@@ -3,7 +3,7 @@
 	public enum CellState
 	{
 		EmptyPipe,
-		FiledPipe,
+		FieldPipe,
 		SourceWater,
 		Space
 	}
