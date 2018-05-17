@@ -20,25 +20,26 @@
 		{
 			if (field[rows, columns].State != CellState.Space && columns < field.Columns - 1)
 			{
-				//++columns;
+				++columns;
 				if (field[rows, columns].State == CellState.SourceWater)
 				{
 					isSource = true;
 				}
-				//Check();
-				//	if (!isSource)
-				//{
-				//	if (field[rows, columns].State != CellState.Space && rows < field.Rows - 1)
-				//{
-				++rows;
-				if (field[rows, columns].State == CellState.EmptyPipe)
+				Check();
+			}
+			//if (!isSource)
+			//{
+			if (field[rows, columns].State != CellState.Space && rows < field.Rows - 1)
 				{
+					++rows;
+					if (field[rows, columns].State == CellState.EmptyPipe)
+					{
+						isSource = true;
+					}
 					Check();
 				}
-				Check();
-				//}
-				//}
-			}
+			//}
+
 			return isSource;
 		}
 	}
