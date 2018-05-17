@@ -24,11 +24,6 @@
 			set { field[rows, columns] = value; }
 		}
 
-		public CellState Cell
-		{
-			get { return Cell; }
-		}
-
 		public int Columns
 		{
 			get { return columns; }
