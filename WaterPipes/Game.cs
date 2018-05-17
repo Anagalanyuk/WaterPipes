@@ -40,7 +40,7 @@ namespace WaterPipes
 				{
 					if (canKey.Key == key)
 					{
-						canKey.Modification();
+						canKey.Action();
 					}
 				}
 				pressKey.Move(key);

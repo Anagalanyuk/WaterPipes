@@ -20,20 +20,20 @@ namespace WaterPipes
 			get { return key; }
 		}
 
-		public void Modification()
+		public void Action()
 		{
-			CheckChanges check = new CheckChanges(field, cursor);
+			CheckChanges checkChange = new CheckChanges(field, cursor);
 			CheckWaterPipe checkWiterPipe = new CheckWaterPipe(field, cursor);
 			if (field[cursor.Y, cursor.X].State == CellState.SourceWater)
 			{
-				if (check.CountSourceWater() != 1)
+				if (checkChange.CountSourceWater() != 1)
 				{
 
 					field[cursor.Y, cursor.X].State = CellState.EmptyPipe;
 				}
 				else
 				{
-					if(check.Check() == 1)
+					if(checkChange.Check() == 1)
 					{
 						field[cursor.Y, cursor.X].State = CellState.Space;
 					}
@@ -41,16 +41,16 @@ namespace WaterPipes
 			}
 			else if (field[cursor.Y, cursor.X].State == CellState.EmptyPipe || field[cursor.Y, cursor.X].State == CellState.SourceWater)
 			{
-				if (check.Check() <= 2)
+				if (checkChange.Check() <= 2)
 				{
 					field[cursor.Y, cursor.X].StateChange();
 				}
-				else if(checkWiterPipe.Check(field, cursor))
+				else if(checkWiterPipe.Check())
 				{
 					field[cursor.Y, cursor.X].StateChange();
 				}
 			}
-			else if (check.Check() > 0)
+			else if (checkChange.Check() > 0)
 			{
 				field[cursor.Y, cursor.X].StateChange();
 			}

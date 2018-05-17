@@ -20,7 +20,7 @@ namespace WaterPipes
 			get { return key; }
 		}
 
-		public void Modification()
+		public void Action()
 		{
 			if (field[cursor.Y, cursor.X].State == CellState.Space)
 			{
