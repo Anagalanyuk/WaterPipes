@@ -24,6 +24,8 @@ namespace WaterPipes
 		{
 			CheckChanges canChange = new CheckChanges(field, cursor);
 			CheckWaterPipe checkWiterPipe = new CheckWaterPipe(field, cursor);
+			int offSetY = 0;
+			int offSetX = 0;
 			if (field[cursor.Y, cursor.X].State == CellState.SourceWater)
 			{
 				if (canChange.CountSourceWater() != 1)
@@ -42,7 +44,7 @@ namespace WaterPipes
 				{
 					field[cursor.Y, cursor.X].StateChange();
 				}
-				else if (checkWiterPipe.Check())
+				else if (checkWiterPipe.Check(offSetY, offSetX))
 				{
 					field[cursor.Y, cursor.X].StateChange();
 				}

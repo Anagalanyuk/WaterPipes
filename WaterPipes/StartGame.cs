@@ -27,20 +27,20 @@ namespace WaterPipes
 				{
 					for (int columns = 0; columns < field.Columns; ++columns)
 					{
-						if (field[rows, columns].State == CellState.FieldPipe || field[rows, columns].State == CellState.SourceWater)
+						if (field[rows, columns].State == CellState.FilledPipe || field[rows, columns].State == CellState.SourceWater)
 						{
 							if (rows > 0)
 							{
 								if (field[rows - offSet, columns].State == CellState.EmptyPipe)
 								{
-									field[rows - offSet, columns].State = CellState.FieldPipe;
+									field[rows - offSet, columns].State = CellState.FilledPipe;
 								}
 							}
 							if (columns > 0)
 							{
 								if (field[rows, columns - offSet].State == CellState.EmptyPipe)
 								{
-									field[rows, columns - offSet].State = CellState.FieldPipe;
+									field[rows, columns - offSet].State = CellState.FilledPipe;
 								}
 							}
 						}
@@ -50,20 +50,20 @@ namespace WaterPipes
 				{
 					for (int columns = field.Columns - 1; columns >= 0; --columns)
 					{
-						if (field[rows, columns].State == CellState.FieldPipe || field[rows, columns].State == CellState.SourceWater)
+						if (field[rows, columns].State == CellState.FilledPipe || field[rows, columns].State == CellState.SourceWater)
 						{
 							if (rows < field.Rows - 1)
 							{
 								if (field[rows + offSet, columns].State == CellState.EmptyPipe)
 								{
-									field[rows + offSet, columns].State = CellState.FieldPipe;
+									field[rows + offSet, columns].State = CellState.FilledPipe;
 								}
 							}
 							if (columns < field.Columns - 1)
 							{
 								if (field[rows, columns + offSet].State == CellState.EmptyPipe)
 								{
-									field[rows, columns + offSet].State = CellState.FieldPipe;
+									field[rows, columns + offSet].State = CellState.FilledPipe;
 								}
 							}
 						}

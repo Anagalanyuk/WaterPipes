@@ -5,41 +5,58 @@
 		private Cursor cursor;
 		private Field field;
 		private bool isSource = false;
-		private int rows;
-		private int columns;
+
 
 		public CheckWaterPipe(Field field, Cursor cursor)
 		{
 			this.cursor = cursor;
 			this.field = field;
-			rows = cursor.Y;
-			columns = cursor.X;
 		}
 
-		public bool Check()
+		public bool Check(int offSetX, int offSetY)
 		{
-			if (field[rows, columns].State != CellState.Space && columns < field.Columns - 1)
+			if (!isSource)
 			{
-				++columns;
-				if (field[rows, columns].State == CellState.SourceWater)
+				if (offSetX + cursor.X < field.Columns - 1 && field[cursor.Y + offSetY, offSetX + cursor.X].State != CellState.Space)
 				{
-					isSource = true;
-				}
-				Check();
-			}
-			//if (!isSource)
-			//{
-			if (field[rows, columns].State != CellState.Space && rows < field.Rows - 1)
-				{
-					++rows;
-					if (field[rows, columns].State == CellState.EmptyPipe)
+					if (field[cursor.Y + offSetY, offSetX + cursor.X].State == CellState.SourceWater)
 					{
 						isSource = true;
 					}
-					Check();
+					if (!isSource)
+					{
+						isSource = Check(offSetX + 1, offSetY);
+					}
 				}
-			//}
-
+			}
+			if (!isSource)
+			{
+				if (offSetY + cursor.Y < field.Rows - 1 && field[cursor.Y + offSetY, cursor.X + offSetX].State != CellState.Space)
+				{
+					if (field[cursor.Y + offSetY, cursor.X + offSetX].State == CellState.SourceWater)
+					{
+						isSource = true;
+					}
+					if (!isSource)
+					{
+						isSource = Check(offSetX, offSetY + 1);
+					}
+				}
+			}
+			if (!isSource)
+			{
+				if (cursor.X - offSetX > 0 && field[cursor.Y + offSetY, cursor.X - offSetX].State != CellState.Space)
+				{
+					if (field[cursor.Y + offSetY, cursor.X - offSetX].State == CellState.SourceWater)
+					{
+						isSource = true;
+					}
+					if (!isSource)
+					{
+						isSource = Check(offSetX + 1, offSetY);
+					}
+				}
+			}
 			return isSource;
 		}
 	}
