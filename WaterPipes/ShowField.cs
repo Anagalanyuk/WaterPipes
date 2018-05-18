@@ -40,7 +40,7 @@ namespace WaterPipes
 						Console.Write(sourceWater);
 						Console.ResetColor();
 					}
-					else if (field[rows, columns].State == CellState.FiledPipe)
+					else if (field[rows, columns].State == CellState.FieldPipe)
 					{
 						Console.SetCursorPosition(offSetRight + columns, offSetDown + rows);
 						Console.ForegroundColor = ConsoleColor.Blue;

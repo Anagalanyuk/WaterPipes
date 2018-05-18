@@ -2,9 +2,9 @@
 
 namespace WaterPipes
 {
-	public class Program
+	internal class Program
 	{
-		public static void Main()
+		internal static void Main()
 		{
 			Console.CursorVisible = false;
 			Game game = new Game();
