@@ -6,6 +6,7 @@
 		private Cursor cursor;
 		private Field field;
 		private int numberConnections;
+		private bool isSource = false;
 
 		public CheckChanges(Field field, Cursor cursor)
 		{
@@ -13,19 +14,76 @@
 			this.field = field;
 		}
 
-		public int Check()
+		public bool CanChange()
 		{
-			for (int i = cursor.Y - 1; i <= cursor.Y + 1; ++i)
+			int offsetX = 0;
+			int offsetY = 0;
+			CheckWaterPipe foo = new CheckWaterPipe(field, cursor);
+			//up
+			if (cursor.Y > 0)
 			{
-				for (int j = cursor.X - 1; j <= cursor.X + 1; ++j)
+				if (field[cursor.Y - 1, cursor.X].State == CellState.EmptyPipe || field[cursor.Y - 1, cursor.X].State == CellState.SourceWater)
 				{
-					if (i >= 0 && i <= field.Rows - 1 && j >= 0 && j <= field.Columns - 1)
-					{
-						if (field[i, j].State == CellState.EmptyPipe || field[i, j].State == CellState.SourceWater)
-						{
-							numberConnections += 1;
-						}
-					}
+					isSource = foo.Check(offsetX, offsetY);
+				}
+			}
+			//left
+			if (cursor.X > 0)
+			{
+				if (field[cursor.Y, cursor.X - 1].State == CellState.EmptyPipe || field[cursor.Y, cursor.X - 1].State == CellState.SourceWater)
+				{
+					isSource = foo.Check(offsetX, offsetY);
+				}
+			}
+			//down
+			if (cursor.Y < field.Columns - 1)
+			{
+				if (field[cursor.Y + 1, cursor.X].State == CellState.EmptyPipe || field[cursor.Y + 1, cursor.X].State == CellState.SourceWater)
+				{
+					isSource = foo.Check(offsetX, offsetY);
+
+				}
+			}
+			//right
+			if (cursor.X < field.Rows - 1)
+			{
+				if (field[cursor.Y, cursor.X + 1].State == CellState.EmptyPipe || field[cursor.Y, cursor.X + 1].State == CellState.SourceWater)
+				{
+					isSource = foo.Check(offsetX, offsetY);
+
+				}
+			}
+			return isSource;
+		}
+
+		public int CountConnection()
+		{
+			if (cursor.Y > 0)
+			{
+				if (field[cursor.Y - 1, cursor.X].State == CellState.EmptyPipe || field[cursor.Y - 1, cursor.X].State == CellState.SourceWater)
+				{
+					numberConnections += 1;
+				}
+			}
+			if (cursor.X > 0)
+			{
+				if (field[cursor.Y, cursor.X - 1].State == CellState.EmptyPipe || field[cursor.Y, cursor.X - 1].State == CellState.SourceWater)
+				{
+					numberConnections += 1;
+				}
+			}
+			if (cursor.Y < field.Columns - 1)
+			{
+				if (field[cursor.Y + 1, cursor.X].State == CellState.EmptyPipe || field[cursor.Y + 1, cursor.X].State == CellState.SourceWater)
+				{
+					numberConnections += 1;
+				}
+			}
+			if (cursor.X < field.Rows - 1)
+			{
+				if (field[cursor.Y, cursor.X + 1].State == CellState.EmptyPipe || field[cursor.Y, cursor.X + 1].State == CellState.SourceWater)
+				{
+					numberConnections += 1;
 				}
 			}
 			return numberConnections;

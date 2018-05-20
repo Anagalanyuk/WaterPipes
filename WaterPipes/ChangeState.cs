@@ -22,34 +22,36 @@ namespace WaterPipes
 
 		public void Action()
 		{
-			CheckChanges canChange = new CheckChanges(field, cursor);
 			CheckWaterPipe checkWiterPipe = new CheckWaterPipe(field, cursor);
-			int offSetY = 0;
-			int offSetX = 0;
+			CheckChanges canChange = new CheckChanges(field, cursor);
+			int offsetY = 0;
+			int offsetX = 0;
 			if (field[cursor.Y, cursor.X].State == CellState.SourceWater)
 			{
 				if (canChange.CountSourceWater() != 1)
 				{
-
 					field[cursor.Y, cursor.X].State = CellState.EmptyPipe;
 				}
-				else if (canChange.Check() == 1)
+				else if (canChange.CountConnection() == 1)
 				{
 					field[cursor.Y, cursor.X].State = CellState.Space;
 				}
 			}
 			else if (field[cursor.Y, cursor.X].State == CellState.EmptyPipe || field[cursor.Y, cursor.X].State == CellState.SourceWater)
 			{
-				if (canChange.Check() <= 2)
+				if (canChange.CountConnection() <= 2)
 				{
-					field[cursor.Y, cursor.X].StateChange();
+					if (canChange.CanChange())
+					{
+						field[cursor.Y, cursor.X].StateChange();
+					}
 				}
-				else if (checkWiterPipe.Check(offSetY, offSetX))
+				else if (checkWiterPipe.Check(offsetY, offsetX))
 				{
 					field[cursor.Y, cursor.X].StateChange();
 				}
 			}
-			else if (canChange.Check() > 0)
+			else if (canChange.CountConnection() > 0)
 			{
 				field[cursor.Y, cursor.X].StateChange();
 			}
