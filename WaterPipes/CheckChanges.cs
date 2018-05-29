@@ -76,8 +76,8 @@
 					{
 						isSource = sourceSearch.Check(offSetX, offSetY);
 					}
+					cursor.Y -= 1;
 				}
-				cursor.Y -= 1;
 			}
 			field[cursor.Y, cursor.X].State = CellState.EmptyPipe;
 			return isSource;

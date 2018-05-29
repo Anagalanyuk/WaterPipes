@@ -28,7 +28,8 @@
 			//right
 			if (!isSource)
 			{
-				if (offSetX + cursor.X <= field.Columns - 1 &&
+				if (clone[cursor.Y ,cursor.X].State == CellState.SourceWater ||
+					offSetX + cursor.X < field.Columns - 1 &&
 					clone[cursor.Y + offSetY, cursor.X + offSetX + 1].State != CellState.Space &&
 					clone[cursor.Y + offSetY, cursor.X + offSetX + 1].State != CellState.FilledPipe)
 				{
@@ -47,7 +48,8 @@
 			//down
 			if (!isSource)
 			{
-				if (cursor.Y + offSetY <= field.Rows - 1 &&
+				if (clone[cursor.Y, cursor.X].State == CellState.SourceWater ||
+					cursor.Y + offSetY < field.Rows - 1 &&
 					clone[cursor.Y + offSetY + 1, cursor.X + offSetX].State != CellState.Space &&
 					clone[cursor.Y + offSetY + 1, cursor.X + offSetX].State != CellState.FilledPipe)
 				{
@@ -66,7 +68,8 @@
 			//left
 			if (!isSource)
 			{
-				if (cursor.X + offSetX > 0 &&
+				if (clone[cursor.Y, cursor.X].State == CellState.SourceWater ||
+					cursor.X + offSetX > 0 &&
 					clone[cursor.Y + offSetY, cursor.X + offSetX - 1].State != CellState.Space &&
 					clone[cursor.Y + offSetY, cursor.X + offSetX - 1].State != CellState.FilledPipe)
 				{
@@ -85,7 +88,8 @@
 			//up
 			if (!isSource)
 			{
-				if (cursor.Y + offSetY > 0 &&
+				if (clone[cursor.Y, cursor.X].State == CellState.SourceWater ||
+					cursor.Y + offSetY > 0 &&
 					clone[cursor.Y + offSetY - 1, cursor.X + offSetX].State != CellState.Space &&
 					clone[cursor.Y + offSetY - 1, cursor.X + offSetX].State != CellState.FilledPipe)
 				{
