@@ -10,6 +10,13 @@
 			set { cell = value; }
 		}
 
+		public object Clone()
+		{
+			Cell clone = new Cell();
+			clone.cell = cell;
+			return clone;
+		}
+
 		public void StateChange()
 		{
 			if (cell == CellState.Space || cell == CellState.SourceWater)

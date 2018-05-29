@@ -48,7 +48,10 @@ namespace WaterPipes
 				}
 				else if (checkWiterPipe.Check(offsetY, offsetX))
 				{
-					field[cursor.Y, cursor.X].StateChange();
+					if (canChange.CanChange())
+					{
+						field[cursor.Y, cursor.X].StateChange();
+					}
 				}
 			}
 			else if (canChange.CountConnection() > 0)
