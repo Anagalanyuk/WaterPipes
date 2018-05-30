@@ -7,6 +7,7 @@
 		private Field field;
 		private int numberConnections;
 		private bool isSource = true;
+		private bool source = true;
 
 		public CheckChanges(Field field, Cursor cursor)
 		{
@@ -16,70 +17,63 @@
 
 		public bool CanChange()
 		{
+			if(field[cursor.Y, cursor.X].State != CellState.SourceWater)
+			{
+				source = false;
+			}
 			field[cursor.Y, cursor.X].State = CellState.Space;
-			int offSetX = 0;
-			int offSetY = 0;
-			CheckWaterPipe sourceSearch = new CheckWaterPipe(field, cursor);
 			//right
-			if (isSource && cursor.X < field.Rows - 1)
+			if (cursor.X + 1 < field.Rows - 1)
 			{
 				cursor.X += 1;
-				if (cursor.X < field.Rows - 1)
-				{
-					if (field[cursor.Y, cursor.X].State == CellState.EmptyPipe ||
+				if (field[cursor.Y, cursor.X].State == CellState.EmptyPipe ||
 						field[cursor.Y, cursor.X].State == CellState.SourceWater)
-					{
-						isSource = sourceSearch.Check(offSetX, offSetY);
-					}
+				{
+					isSource = searchSource();
 				}
 				cursor.X -= 1;
 			}
 			////up
-			sourceSearch.SetisSource(false);
-			if (isSource && cursor.Y > 0)
+			if (isSource && cursor.Y - 1 >= 0)
 			{
 				cursor.Y -= 1;
-				if (cursor.Y >= 0)
+				if (field[cursor.Y, cursor.X].State == CellState.EmptyPipe ||
+					field[cursor.Y, cursor.X].State == CellState.SourceWater)
 				{
-					if (field[cursor.Y, cursor.X].State == CellState.EmptyPipe ||
-						field[cursor.Y, cursor.X].State == CellState.SourceWater)
-					{
-						isSource = sourceSearch.Check(offSetX, offSetY);
-					}
+					isSource = searchSource();
 				}
 				cursor.Y += 1;
 			}
 			////left
-			sourceSearch.SetisSource(false);
-			if (isSource && cursor.X > 0)
+			if (isSource && cursor.X - 1 > 0)
 			{
 				cursor.X -= 1;
-				if (cursor.X > 0)
+				if (field[cursor.Y, cursor.X].State == CellState.EmptyPipe ||
+					field[cursor.Y, cursor.X].State == CellState.SourceWater)
 				{
-					if (field[cursor.Y, cursor.X].State == CellState.EmptyPipe ||
-						field[cursor.Y, cursor.X].State == CellState.SourceWater)
-					{
-						isSource = sourceSearch.Check(offSetX, offSetY);
-					}
+					isSource = searchSource();
 				}
 				cursor.X += 1;
 			}
 			////down
-			sourceSearch.SetisSource(false);
-			if (isSource)
+			if (isSource && cursor.Y + 1 < field.Rows - 1)
 			{
-				if (cursor.Y < field.Rows - 1)
+				cursor.Y += 1;
+				if (field[cursor.Y, cursor.X].State == CellState.EmptyPipe ||
+					field[cursor.Y, cursor.X].State == CellState.SourceWater)
 				{
-					cursor.Y += 1;
-					if (field[cursor.Y, cursor.X].State == CellState.EmptyPipe ||
-						field[cursor.Y, cursor.X].State == CellState.SourceWater)
-					{
-						isSource = sourceSearch.Check(offSetX, offSetY);
-					}
-					cursor.Y -= 1;
+					isSource = searchSource();
 				}
+				cursor.Y -= 1;
 			}
+			if(source)
+			{
+				field[cursor.Y, cursor.X].State = CellState.SourceWater;
+			}
+			else
+			{ 
 			field[cursor.Y, cursor.X].State = CellState.EmptyPipe;
+				}
 			return isSource;
 		}
 
@@ -129,6 +123,12 @@
 				}
 			}
 			return countSourceWater;
+		}
+
+		public bool searchSource()
+		{
+			CheckWaterPipe isSource = new CheckWaterPipe(field, cursor);
+			return isSource.Check(0, 0);
 		}
 	}
 }

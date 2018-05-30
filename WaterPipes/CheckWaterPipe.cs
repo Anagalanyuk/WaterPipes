@@ -2,6 +2,8 @@
 {
 	public class CheckWaterPipe
 	{
+		private int offsetX = 0;
+		private int offsetY = 0;
 		private Cell[,] clone;
 		private Cursor cursor;
 		private Field field;
