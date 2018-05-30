@@ -17,13 +17,13 @@
 
 		public bool CanChange()
 		{
-			if(field[cursor.Y, cursor.X].State != CellState.SourceWater)
+			if (field[cursor.Y, cursor.X].State != CellState.SourceWater)
 			{
 				source = false;
 			}
 			field[cursor.Y, cursor.X].State = CellState.Space;
-			//right
-			if (cursor.X + 1 < field.Rows - 1)
+			// right
+			if (isSource && cursor.X + 1 < field.Rows - 1)
 			{
 				cursor.X += 1;
 				if (field[cursor.Y, cursor.X].State == CellState.EmptyPipe ||
@@ -33,7 +33,7 @@
 				}
 				cursor.X -= 1;
 			}
-			////up
+			// up
 			if (isSource && cursor.Y - 1 >= 0)
 			{
 				cursor.Y -= 1;
@@ -44,7 +44,7 @@
 				}
 				cursor.Y += 1;
 			}
-			////left
+			// left
 			if (isSource && cursor.X - 1 > 0)
 			{
 				cursor.X -= 1;
@@ -55,7 +55,7 @@
 				}
 				cursor.X += 1;
 			}
-			////down
+			// down
 			if (isSource && cursor.Y + 1 < field.Rows - 1)
 			{
 				cursor.Y += 1;
@@ -66,14 +66,14 @@
 				}
 				cursor.Y -= 1;
 			}
-			if(source)
+			if (source)
 			{
 				field[cursor.Y, cursor.X].State = CellState.SourceWater;
 			}
 			else
-			{ 
-			field[cursor.Y, cursor.X].State = CellState.EmptyPipe;
-				}
+			{
+				field[cursor.Y, cursor.X].State = CellState.EmptyPipe;
+			}
 			return isSource;
 		}
 
