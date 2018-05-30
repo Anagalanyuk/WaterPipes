@@ -27,7 +27,7 @@
 			{
 				cursor.X += 1;
 				if (field[cursor.Y, cursor.X].State == CellState.EmptyPipe ||
-						field[cursor.Y, cursor.X].State == CellState.SourceWater)
+					field[cursor.Y, cursor.X].State == CellState.SourceWater)
 				{
 					isSource = searchSource();
 				}
